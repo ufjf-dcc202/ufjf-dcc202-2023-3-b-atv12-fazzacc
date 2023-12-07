@@ -1,11 +1,16 @@
 let estoque = {
     'joao': [
-        {'tipo': 'maca', 'quantidade': 1}
+        {'tipo': 'maca', 'quantidade': 1},
+        {'tipo': 'pera', 'quantidade': 0}, 
+        {'tipo': 'banana', 'quantidade': 0}
     ],
     'maria': [
-        {'tipo': 'maca', 'quantidade': 2}
+        {'tipo': 'maca', 'quantidade': 2},
+        {'tipo': 'pera', 'quantidade': 0}, 
+        {'tipo': 'banana', 'quantidade': 0}
     ]
 };
+
 
 /*
 A lista deve ter o mesmo conteúdo inicial do estado com 1 e 2 maçãs para joão e maria 
@@ -14,6 +19,16 @@ A lista deve ter o mesmo conteúdo inicial do estado com 1 e 2 maçãs para joã
 
 function getEstoque() {
     return structuredClone(estoque);
+}
+
+function limpaEstoque() {
+    const estoque = getEstoque();
+    
+    estoque.joao = [];
+    estoque.maria = [];
+    
+    olJoao.innerHTML = "";
+    olMaria.innerHTML = "";
 }
 
 function transacaoNoEstoque(origem, destino, tipo, quantidade) {
@@ -63,6 +78,7 @@ function transacaoNoEstoque(origem, destino, tipo, quantidade) {
     const quantidadeReal = Math.min(quantidade, monteOrigem.quantidade);
     monteDestino.quantidade += quantidadeReal;
     monteOrigem.quantidade -= quantidadeReal;
+    return;
 }
 
 function dePessoaParaPomar(origem, tipo, quantidade) {
@@ -89,4 +105,6 @@ function dePomarParaPessoa(destino, tipo, quantidade) {
     pessoa.push(novoMonte);
 }
 
-export { getEstoque, transacaoNoEstoque };
+
+
+export { getEstoque, transacaoNoEstoque, limpaEstoque };
