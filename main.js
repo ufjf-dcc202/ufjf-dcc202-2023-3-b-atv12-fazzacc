@@ -27,13 +27,12 @@ function atualizaTela(){
     preencheLista(olMaria, estoque.maria);
 }
 
-function preencheLista(lista, estoqueDaPessoa){
-    lista.innerHTML = "";
-    for(let i = 0; i < estoqueDaPessoa.length; i++)
-    {
+function preencheLista(lista, estoqueDaPessoa) {
+    lista.innerText = "";
+    for (let i = 0; i < estoqueDaPessoa.length; i++) {
         const monte = estoqueDaPessoa[i];
         const li = document.createElement('li');
-        li.textContent = `${monte.tipo}: ${monte.quantidade}`;
-        lista.append(li);
+        li.innerText = `${monte.tipo}: ${monte.quantidade}`;
+        lista.appendChild(li);
     }
 }
