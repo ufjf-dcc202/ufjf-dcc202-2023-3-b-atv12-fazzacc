@@ -1,11 +1,11 @@
 let estoque = {
     'joao': [
-        {'tipo': 'maca', 'qtd': 2},
-        {'tipo': 'pera', 'qtd': 1}
+        {'tipo': 'maca', 'quantidade': 2},
+        {'tipo': 'pera', 'quantidade': 1}
     ],
     'maria': [
-        {'tipo': 'maca', 'qtd': 2},
-        {'tipo': 'banana', 'qtd': 1}
+        {'tipo': 'maca', 'quantidade': 2},
+        {'tipo': 'banana', 'quantidade': 1}
     ]
 };
 
@@ -18,7 +18,7 @@ function getEstoque() {
     return structuredClone(estoque);
 }
 
-function transacao(origem, destino, tipo, quantidade) {
+function transacaoNoEstoque(origem, destino, tipo, quantidade) {
     if(origem === destino) { return; };
     if(destino === "pomar") {
         dePessoaParaPomar(origem, tipo, quantidade);
@@ -50,12 +50,12 @@ function transacao(origem, destino, tipo, quantidade) {
         }
     }
     if(!monteDestino) {
-        monteDestino = {'tipo': tipo, 'qtd': 0};
+        monteDestino = {'tipo': tipo, 'quantidade': 0};
         pessoaDestino.push(monteDestino);
     }
-    const qtdReal = Math.min(quantidade, monteOrigem.qtd);
-    monteDestino.qtd += qtdReal;
-    monteOrigem.qtd -= qtdReal;
+    const quantidadeReal = Math.min(quantidade, monteOrigem.quantidade);
+    monteDestino.quantidade += quantidadeReal;
+    monteOrigem.quantidade -= quantidadeReal;
 }
 
 function dePessoaParaPomar(origem, tipo, quantidade) {
@@ -63,7 +63,7 @@ function dePessoaParaPomar(origem, tipo, quantidade) {
     for(let i=0; i<pessoa.length; i++) {
         const monte = pessoa[i];
         if(monte.tipo === tipo) {
-            monte.qtd -= Math.min(quantidade, monte.qtd);
+            monte.quantidade -= Math.min(quantidade, monte.quantidade);
             return;
         }
     }
@@ -74,12 +74,12 @@ function dePomarParaPessoa(destino, tipo, quantidade) {
     for(let i=0; i<pessoa.length; i++) {
         const monte = pessoa[i];
         if(monte.tipo === tipo) {
-            monte.qtd += Math.max(quantidade, 0);
+            monte.quantidade += Math.max(quantidade, 0);
             return;
         }
     }
-    const novoMonte = {'tipo': tipo, 'qtd': Math.max(quantidade, 0)};
+    const novoMonte = {'tipo': tipo, 'quantidade': Math.max(quantidade, 0)};
     pessoa.push(novoMonte);
 }
 
-export {getEstoque, transacao};
+export {getEstoque, transacaoNoEstoque};
