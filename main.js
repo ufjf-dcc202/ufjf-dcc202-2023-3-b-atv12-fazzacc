@@ -6,7 +6,6 @@ const olMaria = document.querySelector("#maria");
 document.entrada.addEventListener('submit', leFormulario);
 document.entrada.reset();
 
-
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('buttonLimparLista').addEventListener('click', () => {
         limpaEstoque();
@@ -33,11 +32,14 @@ function leFormulario(event)
 
 function preencheLista(lista, estoqueDaPessoa) {
     lista.textContent = "";
-    for (let i = 0; i < estoqueDaPessoa.length; i++) {
-        const monte = estoqueDaPessoa[i];
-        const li = document.createElement('li');
-        li.textContent = `${monte.tipo}: ${monte.quantidade}`;
-        lista.appendChild(li);
+
+    if (Array.isArray(estoqueDaPessoa)) {
+        for (let i = 0; i < estoqueDaPessoa.length; i++) {
+            const monte = estoqueDaPessoa[i];
+            const li = document.createElement('li');
+            li.textContent = `${monte.tipo}: ${monte.quantidade}`;
+            lista.appendChild(li);
+        }
     }
 }
 

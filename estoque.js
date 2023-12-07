@@ -20,24 +20,23 @@ function getEstoque() {
 function limpaEstoque() {
     
     estoque = {};
-    estoque = {
-        'joao': [],
-        'maria': []
-    };
 }
 
 function transacaoNoEstoque(origem, destino, tipo, quantidade) {
     
-    if (quantidade < 0) {
-        return;
+    if (!estoque[origem]) {
+        estoque[origem] = [];
     }
-
-    else if (origem === destino) {
-        return;
-    }
-
     
-    else if (destino === "pomar") {
+    if (!estoque[destino]) {
+        estoque[destino] = [];
+    }    
+
+    if (quantidade < 0 || origem === destino) {
+        return;
+    }
+
+    if (destino === "pomar") {
         let itemEncontrado = estoque[origem].find(item => item.tipo === tipo);
 
         if (itemEncontrado) {
@@ -53,7 +52,7 @@ function transacaoNoEstoque(origem, destino, tipo, quantidade) {
     }
 
     
-    else if (origem === "pomar") {
+    if (origem === "pomar") {
         const itemEncontrado = estoque[destino].find(item => item.tipo === tipo);
     
         if (itemEncontrado) {
