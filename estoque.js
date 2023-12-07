@@ -80,4 +80,4 @@ function dePomarParaPessoa(destino, tipo, quantidade) {
     pessoa.push(novoMonte);
 }
 
-export {getEstoque, transacaoNoEstoque};
+export { getEstoque, transacaoNoEstoque };

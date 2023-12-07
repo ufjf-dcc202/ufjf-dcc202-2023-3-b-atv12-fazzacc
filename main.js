@@ -5,6 +5,13 @@ const olMaria = document.querySelector("#maria");
 
 document.entrada.addEventListener('submit', leFormulario);
 
+document.addEventListener('DOMContentLoaded', () => {
+    const limparListaButton = document.getElementById('limparLista');
+    limparListaButton.addEventListener('click', () => {
+        limparLista();
+    });
+});
+
 atualizaTela();
 
 function leFormulario(event)
@@ -21,18 +28,32 @@ function leFormulario(event)
     atualizaTela();
 }
 
-function atualizaTela(){
-    const estoque = getEstoque();
-    preencheLista(olJoao, estoque.joao);
-    preencheLista(olMaria, estoque.maria);
-}
 
 function preencheLista(lista, estoqueDaPessoa) {
-    lista.innerText = "";
+    lista.textContent = "";
     for (let i = 0; i < estoqueDaPessoa.length; i++) {
         const monte = estoqueDaPessoa[i];
         const li = document.createElement('li');
-        li.innerText = `${monte.tipo}: ${monte.quantidade}`;
+        li.textContent = `${monte.tipo}: ${monte.quantidade}`;
         lista.appendChild(li);
     }
+}
+
+function limparLista() {
+    const estoque = getEstoque();
+    estoque.joao = [];
+    estoque.maria = [];
+    atualizaTela();
+}
+
+
+function atualizaTela() {
+    const estoque = getEstoque();
+
+    // Limpa as listas antes de preenchê-las
+    olJoao.innerHTML = "";
+    olMaria.innerHTML = "";
+
+    preencheLista(olJoao, estoque.joao);
+    preencheLista(olMaria, estoque.maria);
 }
