@@ -42,11 +42,9 @@ function preencheLista(lista, estoqueDaPessoa) {
 function limparLista() {
     const estoque = getEstoque();
     
-    // Limpa as listas no estoque
     estoque.joao = [];
     estoque.maria = [];
     
-    // Limpa as listas visuais na página
     olJoao.innerHTML = "";
     olMaria.innerHTML = "";
 
@@ -57,7 +55,6 @@ function limparLista() {
 function atualizaTela() {
     const estoque = getEstoque();
 
-    // Limpa as listas antes de preenchê-las
     olJoao.innerHTML = "";
     olMaria.innerHTML = "";
 

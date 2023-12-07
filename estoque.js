@@ -17,40 +17,49 @@ function getEstoque() {
 }
 
 function transacaoNoEstoque(origem, destino, tipo, quantidade) {
-    if(origem === destino) { return; };
-    if(destino === "pomar") {
+    
+    if (quantidade < 0) {
+        return;
+    }
+
+    if (origem === destino) {
+        return;
+    }
+
+    
+    if (destino === "pomar") {
         dePessoaParaPomar(origem, tipo, quantidade);
         return;
     }
 
-    if(origem === "pomar") {
+    
+    if (origem === "pomar") {
         dePomarParaPessoa(destino, tipo, quantidade);
         return;
     }
 
+    
     const pessoaOrigem = estoque[origem];
     const pessoaDestino = estoque[destino];
-    let monteOrigem;
-    for(let i=0; i < pessoaOrigem.length; i++) {
-        const monte = pessoaOrigem[i];
-        if(monte.tipo === tipo) {
-            monteOrigem = monte;
-            break;
-        }
+
+    
+    const monteOrigem = pessoaOrigem.find((monte) => monte.tipo === tipo);
+    
+    
+    if (!monteOrigem || monteOrigem.quantidade < quantidade) {
+        return;
     }
-    if(!monteOrigem) { return; }
-    let monteDestino;
-    for(let i=0; i < pessoaDestino.length; i++) {
-        const monte = pessoaDestino[i];
-        if(monte.tipo === tipo) {
-            monteDestino = monte;
-            break;
-        }
-    }
-    if(!monteDestino) {
-        monteDestino = {'tipo': tipo, 'quantidade': 0};
+
+    
+    let monteDestino = pessoaDestino.find((monte) => monte.tipo === tipo);
+
+    
+    if (!monteDestino) {
+        monteDestino = { 'tipo': tipo, 'quantidade': 0 };
         pessoaDestino.push(monteDestino);
     }
+
+    
     const quantidadeReal = Math.min(quantidade, monteOrigem.quantidade);
     monteDestino.quantidade += quantidadeReal;
     monteOrigem.quantidade -= quantidadeReal;
