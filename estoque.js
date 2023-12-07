@@ -14,7 +14,7 @@ A lista deve ter o mesmo conteúdo inicial do estado com 1 e 2 maçãs para joã
 */
 
 function getEstoque() {
-    return structuredClone(estoque);
+    return estoque;
 }
 
 function limpaEstoque() {
