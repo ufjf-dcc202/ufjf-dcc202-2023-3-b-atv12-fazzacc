@@ -1,14 +1,18 @@
 let estoque = {
     'joao': [
-        {'tipo': 'maca', 'qtd': 1},
-        {'tipo': 'pera', 'qtd': 2}
+        {'tipo': 'maca', 'qtd': 2},
+        {'tipo': 'pera', 'qtd': 1}
     ],
     'maria': [
         {'tipo': 'maca', 'qtd': 2},
-        {'tipo': 'banana', 'qtd': 4}
+        {'tipo': 'banana', 'qtd': 1}
     ]
 };
 
+/*
+A lista deve ter o mesmo conteúdo inicial do estado com 1 e 2 maçãs para joão e maria 
+
+*/
 
 function getEstoque() {
     return structuredClone(estoque);
