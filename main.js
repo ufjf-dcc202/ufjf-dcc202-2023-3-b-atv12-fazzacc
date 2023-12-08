@@ -49,6 +49,7 @@ function atualizaTela() {
 
     olJoao.innerHTML = "";
     olMaria.innerHTML = "";
+    document.entrada.quantidade.value = 1;
 
     preencheLista(olJoao, estoque.joao);
     preencheLista(olMaria, estoque.maria);
