@@ -24,11 +24,11 @@ function limpaEstoque() {
 
 function transacaoNoEstoque(origem, destino, tipo, quantidade) {
     
-    if (!estoque[origem]) {
+    if (!estoque[origem] && origem !== "pomar") {
         estoque[origem] = [];
     }
     
-    if (!estoque[destino]) {
+    if (!estoque[destino] && destino !== "pomar") {
         estoque[destino] = [];
     }    
 
